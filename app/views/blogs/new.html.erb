@@ -1,0 +1,11 @@
+<h1>新增文章</h1>
+
+<%= form_tag blogs_path do %>
+
+  標題
+  <input type="text" name="title">
+
+  內容
+  <textarea name="content" id="" cols="30" rows="10"></textarea>
+  <input type="submit" value="新增">
+<% end %>
