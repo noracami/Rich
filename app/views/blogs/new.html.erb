@@ -1,11 +1,12 @@
 <h1>新增文章</h1>
 
-<%= form_tag blogs_path do %>
+<%= form_for @article do |form| %>
 
   標題
-  <input type="text" name="title">
+  <%= form.text_field :title %>
 
   內容
-  <textarea name="content" id="" cols="30" rows="10"></textarea>
+  <%= form.text_area :content %>
+
   <input type="submit" value="新增">
 <% end %>
