@@ -31,6 +31,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article = Article.find_by!(params[:id])
+    @article.destroy
+    redirect_to blogs_path
+  end
+
   private
   def article_params
     params.require(:article).permit(:title, :content)
