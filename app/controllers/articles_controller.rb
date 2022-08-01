@@ -1,6 +1,4 @@
 class ArticlesController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-
   def create
     @article = Article.new(article_params)
 
@@ -15,7 +13,7 @@ class ArticlesController < ApplicationController
     # Article.find(3)        # 只能查id, 查不到 > ActiveRecord::RecordNotFound
     # Article.find_by(id: 3) # 可查詢不同欄位, 查不到 > nil
     # render html: Article.where(id: 5).size
-    # render html: Article.find_by!(params[:id]).title
+    # render html: Article.find_by!(id: params[:id]).title
     # begin
       # Error 錯誤
       # Exception 例外
@@ -46,11 +44,8 @@ class ArticlesController < ApplicationController
     redirect_to blogs_path
   end
 
-  def record_not_found
-    redirect_to blogs_path
-  end
-
   private
+
   def article_params
     params.require(:article).permit(:title, :content)
   end
