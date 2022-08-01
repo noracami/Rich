@@ -1,0 +1,12 @@
+<h1>編輯文章</h1>
+
+<%= form_for @article do |form| %>
+
+  標題
+  <%= form.text_field :title %>
+
+  內容
+  <%= form.text_area :content %>
+
+  <%= form.submit %>
+<% end %>
