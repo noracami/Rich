@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :find_article, only: [:show, :edit, :update, :destroy]
+
   def create
     @article = Article.new(article_params)
 
@@ -21,16 +23,13 @@ class ArticlesController < ApplicationController
     # rescue
       # redirect_to blogs_path
     # end
-    @article = Article.find_by!(id: params[:id])
+    # @article = Article.find_by!(id: params[:id])
   end
 
   def edit
-    @article = Article.find_by!(id: params[:id])
   end
 
   def update
-    @article = Article.find_by!(id: params[:id])
-
     if @article.update(article_params)
       redirect_to blogs_path
     else
@@ -39,7 +38,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find_by!(id: params[:id])
     @article.destroy
     redirect_to blogs_path
   end
@@ -48,5 +46,9 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :content)
+  end
+
+  def find_article
+    @article = Article.find_by!(id: params[:id])
   end
 end
