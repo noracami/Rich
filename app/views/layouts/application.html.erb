@@ -11,15 +11,13 @@
   </head>
 
   <body>
-  <style>
-    .field_with_errors {
-      display: inline;
-    }
-    .field_with_errors input {
-      outline: 3px solid red;
-    }
-  </style>
+    <%= render "shared/flash" if notice %>
+    <div>
+    <h1>pending</h1>
+    <%= link_to "註冊", "/users/sign_up" %>
+    <%= link_to "登入", "/users/sign_in" %>
+    </div>
     <%= yield %>
-    <%= notice %>
+    <%= alert %>
   </body>
 </html>
