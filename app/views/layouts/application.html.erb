@@ -11,18 +11,8 @@
   </head>
 
   <body>
-    <nav>
-      <h1>pending</h1>
-      <ul>
-        <li><%= link_to "註冊", "/users/sign_up" %></li>
-        <li><%= link_to "登入", "/users/sign_in" %></li>
-        <li><%= link_to "登出", "/users/sign_out" %></li>
-      </ul>
-    </nav>
+    <%= render "shared/navbar" %>
     <%= render "shared/flash" if notice %>
-    <% if user_singed_in? %>
-    User : <%= current_user.email %>
-    <% end %>
     <%# byebug %>
     <%= yield %>
     <%= alert %>

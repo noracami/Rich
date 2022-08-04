@@ -1,0 +1,12 @@
+<nav>
+  <h1>pending</h1>
+  <ul>
+    <% if user_singed_in? %>
+      <li>User : <%= current_user.email %></li>
+      <li><%= link_to "登出", sessions_path, method: "delete" %></li>
+    <% else %>
+      <li><%= link_to "註冊", "/users/sign_up" %></li>
+      <li><%= link_to "登入", "/users/sign_in" %></li>
+      <% end %>
+  </ul>
+</nav>
