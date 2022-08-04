@@ -1,13 +1,19 @@
+# Authentication 認證
+# Authorization 授權
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, expect: [:show]
   before_action :find_article, only: [:show, :edit, :update, :destroy]
+  # before_action :check_permittion, only: [:edit, :update, :destroy]
 
   def create
-    @article = Article.new(article_params)
+    # @article = Article.new(article_params)
+    # @article.user = current_user
+    @article = current_user.articles.new(article_params)
 
     if @article.save
       # flash[:notice] = 'ok'
       # redirect_to "/", notice: 'ok', alert: 'alert'
-      redirect_to '/', notice: '會員註冊成功'
+      redirect_to '/', notice: '文章新增成功'
     else
       render new_blog_path
     end
@@ -26,6 +32,7 @@ class ArticlesController < ApplicationController
       # redirect_to blogs_path
     # end
     # @article = Article.find_by!(id: params[:id])
+    @article = Article.find_by!(id: params[:id])
   end
 
   def edit
@@ -39,8 +46,10 @@ class ArticlesController < ApplicationController
     end
   end
 
+  #TODO 2022 / 8 / 4
   def destroy
-    @article.destroy
+    # @article.destroy
+    @article.update(deleted_at: Time.current)
     redirect_to blogs_path, notice: '文章刪除成功'
   end
 
@@ -51,6 +60,16 @@ class ArticlesController < ApplicationController
   end
 
   def find_article
-    @article = Article.find_by!(id: params[:id])
+    # @article = Article.find_by!(id: params[:id])
+    @article = current_user.articles.find_by!(id: params[:id])
   end
+
+  # def check_permittion
+  #   if not current_user.own?(@article)
+  #     redirect_to root_path, notice: "權限不足"
+  #   end
+  #   # if @article.user != current_user
+  #   #   redirect_to root_path, notice: "權限不足"
+  #   # end
+  # end
 end

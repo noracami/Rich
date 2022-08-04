@@ -1,3 +1,5 @@
+<%= render "shared/errors", errors: article.errors if article.errors.any? %>
+
 <%= form_for article do |form| %>
 
   標題

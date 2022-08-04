@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # relationships
+  has_many :articles
+
+  # validation
   validates :email, presence: true, uniqueness: true
 
   validates :password,
@@ -15,6 +19,10 @@ class User < ApplicationRecord
     salting = -> (txt) { "xx-------#{txt}--yy" }
     hashed_password = Digest::SHA1.hexdigest(salting.(password))
     find_by(email: email, password: hashed_password)
+  end
+
+  def own?(article)
+    article.user == self
   end
 
   private

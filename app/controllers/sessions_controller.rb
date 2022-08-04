@@ -14,4 +14,7 @@ class SessionsController < ApplicationController
       redirect_to '/users/sign_in', notice: '失敗'
     end
   end
+  def destroy
+    redirect_to root_path, notice: '123'
+  end
 end

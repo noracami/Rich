@@ -1,15 +1,12 @@
 class BlogsController < ApplicationController
   include UsersHelper
+  before_action :authenticate_user!, only: [:new]
   def index
     # flash[:notice] = 'test'
-    @articles = Article.all
+    @articles = Article.where(deleted_at: nil).order(id: :desc)
   end
 
   def new
-    if user_singed_in?
-      @article = Article.new
-    else
-      redirect_to sign_in_users_path
-    end
+    @article = Article.new
   end
 end
