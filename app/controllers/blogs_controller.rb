@@ -2,8 +2,8 @@ class BlogsController < ApplicationController
   include UsersHelper
   before_action :authenticate_user!, only: [:new]
   def index
-    # flash[:notice] = 'test'
-    @articles = Article.available.order(id: :desc)
+    @articles = Article.order(id: :desc)
+    # @articles = Article.unscope(:where).order(id: :desc)
   end
 
   def new
