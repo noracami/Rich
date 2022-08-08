@@ -3,7 +3,6 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   def index
     @articles = Article.order(id: :desc)
-    # @articles = Article.unscope(:where).order(id: :desc)
   end
 
   def new
