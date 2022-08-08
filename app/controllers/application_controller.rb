@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     # redirect_to blogs_path
   end
 
-  # Memoization
+  # Memorization
   def current_user
     @_current_user ||= User.find_by(id: session[:user_session])
   end
