@@ -3,7 +3,7 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   def index
     # flash[:notice] = 'test'
-    @articles = Article.where(deleted_at: nil).order(id: :desc)
+    @articles = Article.available.order(id: :desc)
   end
 
   def new
