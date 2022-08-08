@@ -3,12 +3,11 @@
 <h2><%= @article.title %></h2>
 
 <p>
-  <% if @article.pincode.present? %>
+  <% if is_locked?(@article) %>
     <%= form_with url: unlock_article_path, method: "patch" do |f| %>
       <label>請輸入密碼 <%= f.text_field :pincode %></label>
       <%= f.submit "解鎖" %>
     <% end %>
-
   <% else %>
     <%= @article.content %>
   <% end %>
