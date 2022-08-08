@@ -2,11 +2,21 @@
 
 <%= form_for article do |form| %>
 
+  <div>
   標題
   <%= form.text_field :title %>
+  </div>
 
+  <div>
   內容
   <%= form.text_area :content %>
+  </div>
+
+  <div>
+  密碼
+  <%= form.text_field :pincode %>
+  fill unless no need
+  </div>
 
   <%= form.submit %>
 <% end %>
