@@ -46,10 +46,8 @@ class ArticlesController < ApplicationController
     end
   end
 
-  #TODO 2022 / 8 / 4
   def destroy
-    # @article.destroy
-    @article.update(deleted_at: Time.current)
+    @article.destroy
     redirect_to blogs_path, notice: '文章刪除成功'
   end
 
