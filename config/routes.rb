@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # REST
   resources :blogs
   resources :articles do
+    resources :comments, shallow: true, only: [:create, :destroy]
     member do
       patch :unlock
     end

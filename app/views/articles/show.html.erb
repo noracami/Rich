@@ -11,4 +11,17 @@
   <% else %>
     <%= @article.content %>
   <% end %>
+
+  <section>
+    <%# <%= form_with model: @comment, url: article_comments_path(@article) do |f| %>
+    <%= form_with model: [@article, @comment] do |f| %>
+      <%= f.text_area :content %>
+      <%= f.submit %>
+    <% end %>
+  </section>
+  <ul>
+  <% @comments.each do |c| %>
+    <li><%= c.content %><%= link_to "X", c, method: "delete", data: {confirm: "Y/n"} %></li>
+  <% end %>
+  </ul>
 </p>

@@ -14,6 +14,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @article.comments.order(id: :desc)
   end
 
   def edit
