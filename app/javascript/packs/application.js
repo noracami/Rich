@@ -6,8 +6,14 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+// import "channels"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   document.querySelector("#likeBtn").addEventListener("click", () => {
+//     console.log(123)
+//   })
+// })
