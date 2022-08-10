@@ -1,0 +1,6 @@
+;(function () {
+  const commentList = document.querySelector(".comment_list")
+  const li = `<li><%= @comment.content %><%= link_to "[ X ]", @comment, method: "delete", data: {confirm: "Y/n"} %></li>`
+  commentList.insertAdjacentHTML("afterbegin", li)
+  document.querySelector("#comment_content").value = ""
+})()
