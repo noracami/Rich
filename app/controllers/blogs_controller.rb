@@ -1,12 +1,35 @@
 class BlogsController < ApplicationController
-  # include UsersHelper
   before_action :authenticate_user!, only: [:new]
-  def index
-    @articles = Article.order(id: :desc)
-    flash[:notice] = 123
+
+  def show
+    @blog = Blog.find_by!(handler: params[:handler])
   end
 
   def new
-    @article = Article.new
+    @blog = Blog.new
   end
+
+  def create
+    @blog = current_user.build_blog(blog_params)
+
+    if @blog.save
+      redirect_to `/@#{@blog.handler}`, notice: '新增成功'
+    else
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
+  private
+    def blog_params
+      params.require(:blog).permit(:handler, :title, :description)
+    end
 end

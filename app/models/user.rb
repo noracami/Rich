@@ -6,6 +6,9 @@ class User < ApplicationRecord
   has_many :like_articles
   has_many :liked_articles, through: :like_articles,
                             source: :article
+  has_many :blog_visitors
+  has_many :visited_blogs, through: :blog_visitors,
+                           source: :blog
 
   # validation
   validates :email, presence: true, uniqueness: true

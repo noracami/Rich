@@ -1,0 +1,14 @@
+<h1>有名小站</h1>
+
+<%= params %>
+
+<% @blogs.each do |blog| %>
+  <pre>
+    id:<%= blog.id %>
+    handler:<%= link_to nil, "@#{blog.handler}" %>
+    title:<%= blog.title %>
+    description:<%= blog.description %>
+    user_id:<%= blog.user_id %>
+    deleted_at:<%= blog.deleted_at %>
+  </pre>
+<% end %>

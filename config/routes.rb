@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  root to: "blogs#index"
-  get "/about", to: "welcome#about"
+  root to: "pages#home"
+  get "/about", to: "pages#about"
+
+  get "/@:handler/blogs/", to: "blogs#show"
+  get "/@:handler/blogs/all", to: "articles#index"
+  get "/@:handler/blogs/:id", to: "articles#show"
 
   # REST
-  resources :blogs
+  resources :blogs, except: %i[ show index ]
   resources :articles do
     resources :comments, shallow: true, only: [:create, :destroy]
     member do
@@ -25,4 +29,6 @@ Rails.application.routes.draw do
     get :sign_up
     get :sign_in
   end
+
+  get "/@:handler", to: "blogs#show"
 end

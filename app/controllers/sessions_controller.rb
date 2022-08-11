@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       session[:user_session] = user.id
 
       # 檢查是否已經有部落格
-      if user.blog.presence?
+      if user.blog.present?
         redirect_to root_path, notice: '登入成功'
       else
         redirect_to new_blog_path, notice: '請先建立部落格'
@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
     end
   end
   def destroy
+    session[:user_session] = nil
     redirect_to root_path, notice: '登出成功'
   end
 end

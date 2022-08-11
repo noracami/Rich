@@ -1,7 +1,16 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :unlock]
+  before_action :authenticate_user!, except: [ :new, :show, :unlock]
   before_action :find_current_user_article, only: [:edit, :update, :destroy]
   before_action :find_article, only: [:show, :unlock]
+
+  def index
+    @articles = Article.order(id: :desc)
+    flash[:notice] = 123
+  end
+
+  def new
+    @article = Article.new
+  end
 
   def create
     @article = current_user.articles.new(article_params)
