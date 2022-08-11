@@ -3,6 +3,14 @@ class BlogsController < ApplicationController
 
   def show
     @blog = Blog.find_by!(handler: params[:handler])
+    if current_user && @blog != current_user.blog
+      BlogVisitor.find_by(user: current_user, blog: @blog)&.destroy
+      # if @blog.visitors.include?(current_user)
+      #   @blog.visitors.destroy(current_user)
+      # end
+
+      @blog.visitors << current_user
+    end
   end
 
   def new
@@ -13,7 +21,7 @@ class BlogsController < ApplicationController
     @blog = current_user.build_blog(blog_params)
 
     if @blog.save
-      redirect_to `/@#{@blog.handler}`, notice: '新增成功'
+      redirect_to "/@#{@blog.handler}", notice: "新增成功"
     else
       render :new
     end

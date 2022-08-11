@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get "/about", to: "pages#about"
 
-  get "/@:handler/blogs/", to: "blogs#show"
+  get "/@:handler/blogs/", to: "blogs#show", as: "blog"
   get "/@:handler/blogs/all", to: "articles#index"
   get "/@:handler/blogs/:id", to: "articles#show"
 

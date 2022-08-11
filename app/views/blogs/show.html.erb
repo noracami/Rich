@@ -1,7 +1,4 @@
 <h1>@<%= @blog.handler %>'s blog</h1>
-
-<%= params %>
-
 <pre>
   id:<%= @blog.id %>
   handler:<%= @blog.handler %>
@@ -12,5 +9,11 @@
 </pre>
 <section>
   <h2>誰來我家</h2>
+  <ol>
+    <li>begin</li>
+    <% @blog.visitors&.each do |visitor| %>
+    <li><%= link_to visitor.email, "/@#{visitor.blog.handler}" %></li>
+    <% end %>
+  </ol>
 </section>
 <%# <% byebug %>

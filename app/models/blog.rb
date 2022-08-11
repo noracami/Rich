@@ -3,6 +3,10 @@ class Blog < ApplicationRecord
 
   # relationships
   belongs_to :user
+  has_many :blog_visitors
+  has_many :visitors,
+           through: :blog_visitors,
+           source: :user
 
   # validation
   validates :handler, presence: true, uniqueness: true

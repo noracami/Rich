@@ -1,5 +1,5 @@
+<h1><%= link_to "有名小站", root_path %></h1>
 <nav>
-  <h1>pending</h1>
   <ul>
     <% if user_singed_in? %>
       <li>User : <%= current_user.email %></li>
@@ -10,3 +10,7 @@
       <% end %>
   </ul>
 </nav>
+<hr>
+<pre><%= params %></pre>
+<% instance_variables %>
+<hr>
