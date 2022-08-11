@@ -2,6 +2,12 @@
 
 <h2><%= @article.title %></h2>
 
+<section data-controller="like"
+         data-article-id="<%= @article.id %>"
+         data-liked="<%= current_user&.liked?(@article) %>">
+  <button data-like-target="likeButton"
+          data-action="click->like#like_article">O</button>
+</section>
 <p>
   <% if is_locked?(@article) %>
     <%= form_with url: unlock_article_path, method: "patch" do |f| %>
@@ -13,15 +19,12 @@
   <% end %>
 
   <section>
-    <%# <%= form_with model: @comment, url: article_comments_path(@article) do |f| %>
-    <%= form_with model: [@article, @comment] do |f| %>
+    <%= form_with model: [@article, @comment], local: false do |f| %>
       <%= f.text_area :content %>
       <%= f.submit %>
     <% end %>
   </section>
-  <ul>
-  <% @comments.each do |c| %>
-    <li><%= c.content %><%= link_to "X", c, method: "delete", data: {confirm: "Y/n"} %></li>
-  <% end %>
+  <ul class="comment_list">
+    <%= render @comments %>
   </ul>
 </p>

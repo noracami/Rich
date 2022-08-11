@@ -1,7 +1,11 @@
 class User < ApplicationRecord
   # relationships
+  has_one :blog
   has_many :articles
   has_many :comments
+  has_many :like_articles
+  has_many :liked_articles, through: :like_articles,
+                            source: :article
 
   # validation
   validates :email, presence: true, uniqueness: true
@@ -24,6 +28,10 @@ class User < ApplicationRecord
 
   def own?(article)
     article.user == self
+  end
+
+  def liked?(article)
+    liked_articles.include?(article)
   end
 
   private

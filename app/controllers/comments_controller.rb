@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
     @comment = @article.comments.new(comment_params)
 
     if @comment.save
-      redirect_to @article, notice: "success"
+      # create.js.erb
+      # redirect_to @article, notice: "success"
     else
       redirect_to @article, notice: "fail"
     end
