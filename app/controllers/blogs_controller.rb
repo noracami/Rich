@@ -7,7 +7,7 @@ class BlogsController < ApplicationController
       BlogVisitor.find_by(user: current_user, blog: @blog)&.destroy
       @blog.visitors << current_user
     end
-    @articles = @blog.user.articles
+    @articles = @blog.user.articles.page(params[:page]).per(3)
   end
 
   def new

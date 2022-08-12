@@ -8,6 +8,7 @@
   deleted_at:<%= @blog.deleted_at %>
 </pre>
 <section>
+<%= paginate @articles %>
 <% @articles.each do |article| %>
   <h2><%= article.title %></h2>
   <article>
