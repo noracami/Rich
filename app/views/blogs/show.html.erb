@@ -8,6 +8,14 @@
   deleted_at:<%= @blog.deleted_at %>
 </pre>
 <section>
+<% @articles.each do |article| %>
+  <h2><%= article.title %></h2>
+  <article>
+    <%= article.content.truncate(100) %>
+  </article>
+<% end %>
+</section>
+<section>
   <h2>誰來我家</h2>
   <ol>
     <li>begin</li>
