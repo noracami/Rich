@@ -4,6 +4,10 @@
     <% if user_singed_in? %>
       <li><%= link_to "升級方案", plans_path %></li>
       <li>User : <%= current_user.email %></li>
+      <li>
+        <%= link_to "blog", blogs_path(handler: current_user.blog.handler) %>
+        <%= link_to "edit", edit_blogs_path(handler: current_user.blog.handler) %>
+      </li>
       <li><%= link_to "登出", sessions_path, method: "delete" %></li>
     <% else %>
       <li><%= link_to "註冊", "/users/sign_up" %></li>

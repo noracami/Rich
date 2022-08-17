@@ -1,0 +1,16 @@
+<%= form_with model: blog, url: url do |f| %>
+  <p>部落格識別碼</p>
+
+  <% if blog.new_record? %>
+    <%= f.text_field :handler %>
+    新增後無法修改
+  <% else %>
+    <%= blog.handler %>
+    不可編輯
+  <% end %>
+  <p>站名</p>
+  <%= f.text_field :title %>
+  <p>說明</p>
+  <%= f.text_area :description %>
+  <p><%= f.submit %></p>
+<% end %>

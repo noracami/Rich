@@ -3,14 +3,11 @@ class BlogsController < ApplicationController
 
   def show
     @blog = Blog.find_by!(handler: params[:handler])
-    if current_user && @blog != current_user.blog
+    if user_singed_in? && @blog != current_user.blog
       BlogVisitor.find_by(user: current_user, blog: @blog)&.destroy
-      # if @blog.visitors.include?(current_user)
-      #   @blog.visitors.destroy(current_user)
-      # end
-
       @blog.visitors << current_user
     end
+    @articles = @blog.user.articles.page(params[:page]).per(3)
   end
 
   def new
@@ -28,6 +25,8 @@ class BlogsController < ApplicationController
   end
 
   def edit
+    @blog = current_user.blog
+
   end
 
   def update

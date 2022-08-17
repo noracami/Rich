@@ -1,12 +1,3 @@
 <h1>新增 blog</h1>
 
-
-<%= form_with model: @blog do |f| %>
-  <p>部落格識別碼</p>
-  <%= f.text_field :handler %>
-  <p>站名</p>
-  <%= f.text_field :title %>
-  <p>說明</p>
-  <%= f.text_area :description %>
-  <p><%= f.submit %></p>
-<% end %>
+<%= render "form", blog: @blog, url: "/blogs" %>
