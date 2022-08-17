@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :visited_blogs,
            through: :blog_visitors,
            source: :blog
+  has_many :orders
 
   # validation
   validates :email, presence: true, uniqueness: true

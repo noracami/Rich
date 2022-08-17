@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'orders/show'
+  get 'plans/show'
   root to: "pages#home"
   get "/about", to: "pages#about"
 
@@ -12,6 +14,14 @@ Rails.application.routes.draw do
     resources :comments, shallow: true, only: [:create, :destroy]
     member do
       patch :unlock
+    end
+  end
+
+  resource :plans, only: [:show]
+
+  resources :orders, except: [:edit, :update, :destroy] do
+    member do
+      delete :cancel
     end
   end
 

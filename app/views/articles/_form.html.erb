@@ -8,6 +8,11 @@
   </div>
 
   <div>
+  發布日期
+  <%= form.text_field :publish_at, data: { controller: "datepicker" }%>
+  </div>
+
+  <div>
   內容
   <%= form.text_area :content %>
   </div>

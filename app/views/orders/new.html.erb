@@ -1,0 +1,8 @@
+<h1>升級</h1>
+
+Vip 方案
+
+<%= form_with model: @order do |form| %>
+  <%= form.text_area :note, class: "border border-black" %>
+  <%= form.submit "建立訂單" %>
+<% end %>

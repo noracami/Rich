@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_11_175958) do
+ActiveRecord::Schema.define(version: 2022_08_17_061812) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2022_08_11_175958) do
     t.integer "user_id"
     t.datetime "deleted_at"
     t.string "pincode"
+    t.datetime "publish_at"
     t.index ["deleted_at"], name: "index_articles_on_deleted_at"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
@@ -31,15 +32,6 @@ ActiveRecord::Schema.define(version: 2022_08_11_175958) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["blog_id"], name: "index_blog_visitors_on_blog_id"
     t.index ["user_id"], name: "index_blog_visitors_on_user_id"
-  end
-
-  create_table "blog_vistors", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "blog_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["blog_id"], name: "index_blog_vistors_on_blog_id"
-    t.index ["user_id"], name: "index_blog_vistors_on_user_id"
   end
 
   create_table "blogs", force: :cascade do |t|
@@ -76,6 +68,17 @@ ActiveRecord::Schema.define(version: 2022_08_11_175958) do
     t.index ["user_id"], name: "index_like_articles_on_user_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "serial"
+    t.integer "price"
+    t.string "state"
+    t.integer "user_id", null: false
+    t.text "note"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password"
@@ -87,9 +90,8 @@ ActiveRecord::Schema.define(version: 2022_08_11_175958) do
 
   add_foreign_key "blog_visitors", "blogs"
   add_foreign_key "blog_visitors", "users"
-  add_foreign_key "blog_vistors", "blogs"
-  add_foreign_key "blog_vistors", "users"
   add_foreign_key "blogs", "users"
   add_foreign_key "like_articles", "articles"
   add_foreign_key "like_articles", "users"
+  add_foreign_key "orders", "users"
 end
