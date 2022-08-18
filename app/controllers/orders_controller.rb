@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_order, only: [:pay, :submit_payment]
   
   def new
     @order = Order.new
@@ -19,7 +20,7 @@ class OrdersController < ApplicationController
   end
 
   def pay
-    @order = Order.find_by!(serial: params[:id])
+    
     
     # pass client_token to your front-end
     @token = gateway.client_token.generate
@@ -27,10 +28,29 @@ class OrdersController < ApplicationController
 
   # TODO post payment
   def submit_payment
-  
+    result = gateway.transaction.sale(
+      amount: @order.price,
+      payment_method_nonce: params[:nonce],
+      # device_data: device_data_from_the_client,
+      # options: {
+      #   submit_for_settlement: true
+      # }
+    )
+
+    if result.success?
+      @order.pay!
+      redirect_to root_path, notice: "交易成功"
+    else
+      @order.fail!
+      redirect_to root_path, notice: "交易失敗"
+    end
   end
 
   private
+
+  def find_order
+    @order = Order.find_by!(serial: params[:id])
+  end
 
   def order_params
     params.require(:order).permit(:note)
