@@ -25,7 +25,7 @@ export default class extends Controller {
               //   a server-side integration
               this.createNonceField(payload.nonce)
               // document.getElementById('nonce').value = payload.nonce;
-              form.submit()
+              this.element.submit()
             })
             .catch((error) => {
               throw error

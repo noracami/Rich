@@ -8,6 +8,11 @@
   </div>
 
   <div>
+  標題
+  <%= form.file_field :cover_image %>
+  </div>
+
+  <div>
   發布日期
   <%= form.text_field :publish_at, data: { controller: "datepicker" }%>
   </div>

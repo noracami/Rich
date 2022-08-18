@@ -31,12 +31,14 @@ gem 'paranoia', '~> 2.6'
 gem "kaminari", "~> 1.2"
 gem "aasm", "~> 5.3"
 gem "braintree", "~> 4.8.0"
+gem 'image_processing'
 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem "faker", "~> 2.22"
+  gem 'dotenv-rails'
 end
 
 group :development do
