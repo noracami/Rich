@@ -14,6 +14,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.new(article_params)
+# TODO Pundit
+    authorize @article
 
     if @article.save
       redirect_to '/', notice: '文章新增成功'
