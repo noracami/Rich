@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
+
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
+  rescue_from Pundit::NotAuthorizedError, with: :no_permission
 
   helper_method :current_user, :user_singed_in?
 
@@ -9,6 +12,10 @@ class ApplicationController < ActionController::Base
   def record_not_found
     render status: 404, layout: false, file: "#{Rails.root}/public/404.html"
     # redirect_to blogs_path
+  end
+
+  def no_permission
+    redirect_to root_path, notice: "權限不足"
   end
 
   # Memorization

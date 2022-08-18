@@ -1,6 +1,11 @@
 class ArticlePolicy < ApplicationPolicy
+
   def create?
-    false
+    if user.orders.exists?(state: 'paid')
+      true
+    else
+      user.articles.count < 5
+    end
   end
   
   class Scope < Scope
