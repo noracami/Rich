@@ -20,11 +20,23 @@ class OrdersController < ApplicationController
 
   def pay
     @order = Order.find_by!(serial: params[:id])
+    
+    # pass client_token to your front-end
+    @token = gateway.client_token.generate
   end
 
   private
 
   def order_params
     params.require(:order).permit(:note)
+  end
+
+  def gateway
+    Braintree::Gateway.new(
+      environment: :sandbox,
+      merchant_id: '',
+      public_key: '',
+      private_key: '',
+    )
   end
 end

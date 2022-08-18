@@ -4,7 +4,11 @@
 
 <%= form_with url: pay_order_path(id: @order.serial),
               method: 'post',
-              data: { controller: 'braintree' } do |form| %>
+              data: {
+                controller: 'braintree',
+                token: @token,
+                } do |form| %>
 
-<span data-braintree-target='payment'>12</span>
+<span data-braintree-target='payment'></span>
+<%= form.submit %>
 <% end %>
