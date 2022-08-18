@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resource :blogs, only: %i[ new create ]
 
   get "/@:handler/blogs/all", to: "articles#index"
-  # get "/@:handler/blogs/:id", to: "articles#show"
 
   # REST
   resources :articles do
@@ -25,6 +24,8 @@ Rails.application.routes.draw do
 
   resources :orders, except: [:edit, :update, :destroy] do
     member do
+      get 'pay'
+      post 'pay', action: 'submit_payment'
       delete :cancel
     end
   end

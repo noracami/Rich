@@ -11,11 +11,15 @@ class OrdersController < ApplicationController
     p order
 
     if order.save
-      redirect_to '/', notice: '建立訂單成功'
+      redirect_to pay_order_path(id: order.serial), notice: '建立訂單成功'
       # 刷卡
     else
       redirect_to plans_path, notice: '系統忙碌中，請稍後再試'
     end
+  end
+
+  def pay
+    @order = Order.find_by!(serial: params[:id])
   end
 
   private

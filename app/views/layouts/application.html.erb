@@ -14,7 +14,9 @@
     <%= render "shared/navbar" %>
     <%= render "shared/flash" if notice %>
     <%# byebug %>
-    <%= yield %>
+    <div class="container bg-gray-100">
+      <%= yield %>
+    </div>
     <%= alert %>
   </body>
 </html>
