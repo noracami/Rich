@@ -33,6 +33,8 @@ gem "aasm", "~> 5.3"
 gem "braintree", "~> 4.8.0"
 gem 'image_processing'
 gem "pundit"
+gem 'acts-as-taggable-on', '~> 9.0'
+
 
 gem 'net-smtp', require: false
 

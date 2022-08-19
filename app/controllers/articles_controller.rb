@@ -33,8 +33,10 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    render html:params
+    return
     if @article.update(article_params)
-      redirect_to blogs_path, notice: '文章修改成功'
+      redirect_to blogs_path(current_user.blog.handler), notice: '文章修改成功'
     else
       render :edit
     end
@@ -68,7 +70,8 @@ class ArticlesController < ApplicationController
                                     :content,
                                     :pincode,
                                     :publish_at,
-                                    :cover_image)
+                                    :cover_image,
+                                    :tags)
   end
 
   def find_current_user_article

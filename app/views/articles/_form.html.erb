@@ -8,8 +8,15 @@
   </div>
 
   <div>
-  標題
+  圖片
   <%= form.file_field :cover_image %>
+  </div>
+
+  <div>
+    標籤
+    <%= form.fields_for :tags do |tags_form| %>
+      <%= tags_form.text_field :tags %>
+    <% end %>
   </div>
 
   <div>
