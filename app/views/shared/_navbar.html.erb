@@ -1,6 +1,6 @@
 <h1 class="p-8"><%= link_to "有名小站", root_path %></h1>
-<nav>
-  <ul>
+<nav class="py-2 border-b-2 border-gray-500">
+  <ul class="flex justify-between">
     <% if user_singed_in? %>
       <li><%= link_to "升級方案", plans_path %></li>
       <li>User : <%= current_user.email %></li>
@@ -12,17 +12,16 @@
     <% else %>
       <li><%= link_to "註冊", "/users/sign_up" %></li>
       <li><%= link_to "登入", "/users/sign_in" %></li>
-      <% end %>
+    <% end %>
   </ul>
 </nav>
 <hr>
 
-<form action="/articles/search" method="get">
-  > <input type="text" name="keyword">
-  <button type="submit">搜尋</button>
+<form action="/articles/search" method="get" class="m-2">
+  > <input type="text" name="keyword" placeholder="請輸入關鍵字查詢" class="px-2 py-1 border border-blue-300">
+  <button type="submit" class="border hover:border-red-200 p-1">search</button>
 </form>
 
 <hr>
 <pre><%= params %></pre>
-<% instance_variables %>
 <hr>

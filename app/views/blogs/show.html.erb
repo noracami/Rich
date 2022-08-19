@@ -8,16 +8,15 @@
   user_id:<%= @blog.user_id %>
   deleted_at:<%= @blog.deleted_at %>
 </pre>
+
 <section>
 <%= paginate @articles %>
-<% @articles.each do |article| %>
-  <h2 class="my-3 text-3xl"><%= article.title %></h2>
-  <%= image_tag article.cover_image if article.cover_image.attached? %>
-  <article>
-    <%= article.content.truncate(100) %>
-  </article>
-<% end %>
+
+<ul data-controller="sortable">
+  <%= render @articles %>
+</ul>
 </section>
+
 <section>
   <h2>誰來我家</h2>
   <ol>
