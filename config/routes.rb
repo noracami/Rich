@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   # REST
   resources :articles do
     resources :comments, shallow: true, only: [:create, :destroy]
+    collection do
+      get :search
+    end
     member do
       patch :unlock
     end

@@ -11,4 +11,11 @@ class Article < ApplicationRecord
 
   # validation
   validates :title, presence: true, length: { minimum: 1 }
+
+  def self.search(keyword)
+    where("title like ? or content like ?",
+          "%#{keyword}%",
+          "%#{keyword}%"
+    )
+  end
 end

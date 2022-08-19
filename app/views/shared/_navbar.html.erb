@@ -1,4 +1,4 @@
-<h1><%= link_to "有名小站", root_path %></h1>
+<h1 class="p-8"><%= link_to "有名小站", root_path %></h1>
 <nav>
   <ul>
     <% if user_singed_in? %>
@@ -15,6 +15,13 @@
       <% end %>
   </ul>
 </nav>
+<hr>
+
+<form action="/articles/search" method="get">
+  > <input type="text" name="keyword">
+  <button type="submit">搜尋</button>
+</form>
+
 <hr>
 <pre><%= params %></pre>
 <% instance_variables %>

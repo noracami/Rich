@@ -54,6 +54,13 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def search
+    @articles = Article.search(params[:keyword])
+    render json: @articles
+    # render html: params
+    # TODO views
+  end
+
   private
 
   def article_params
